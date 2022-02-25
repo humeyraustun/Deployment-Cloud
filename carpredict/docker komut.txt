@@ -1,0 +1,169 @@
+sudo amazon-linux-extras install docker
+sudo systemctl start docker
+sudo systemctl enable  docker
+sudo systemctl status  docker
+
+------------------
+
+sudo usermod -aG docker ec2-user    yetki alıyoruz
+
+newgrp docker 
+
+docker image ls
+
+docker pull ubuntu
+
+docker image ls
+
+ducker run -it ubuntu
+# ec2 içinden çıktı docker ubuntuya geçti
+
+apt-get update -y
+apt-get install python3 -y
+pip3 --version
+apt-get install python3-pip -y
+pip3 --version
+
+pip3 install pandas
+
+????
+
+
+docker run -it  ubuntu
+docker run -it -d --name myubuntu  ubuntu
+docker image ls
+docker ps
+docker attach d39
+docker ps -a
+docker exec -it d39 bash
+docker start d39
+docker exec -it d39 bash
+docker image ls
+docker run -it -d -p 80:80 nginx
+docker ps
+
+##
+
+ec2 ==>  all trafic  tüm portları açar 
+
+
+--------------2. saat------------
+
+docker exec -it 799 bash
+
+pwd 
+
+root
+
+cd /usr/share/nginx/html/
+ls -l
+cat index.html 
+echo "<h1> Welcomte to Clarusway Deployment course</h1>" > index.html 
+cat index.html 
+
+kayıtlı verilere ulaşmal iiçin docker gitse bile datalara olaşmak için
+
+docker volume ls # içi boş
+
+docker rm -f docker numarsı docker ı komple siler
+
+docker volume create clarus-val
+
+docker volume ls  
+
+docker run -dit -v clarus-vol:/APP ubuntu
+
+docker ps
+
+docker exec -it 24e bash
+
+touch testfile_created_in_docker_conteiner.txt
+
+echo "my blablalllllllllaaa" > testfile_created_in_docker_conteiner.txt
+
+cat testfile_created_in_docker_conteiner.txt
+
+---------------------------------------
+
+ayrı bashte
+
+docker volume inspect clarus_vol  dosya yolunu verir 
+
+sudo ls *dosya yolunu copy
+------------------------------------------
+
+docker ps
+
+docker stop 24e
+
+docker rm 24e
+
+------------------------------------------------
+
+sudo ls -l *dosya yolu copy 
+
+---------------------------------------------------
+
+docker base imagenin içine image oluşturmak için:
+
+mkdir TEST
+
+cd TEST
+
+touch app.py
+nano app.py  ile içine girdik 
+
+from flask import Flask
+app = Flask(__name__)
+@app.route("/")
+def hello():
+    return "<h1>Welcome to Clarusway</h1>"
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=80)
+
+kayıt ettik
+ctrl o enter daha sonra ctrl x  ile çıktık
+
+-------------------------------
+touch Dockerfile ...???
+image içine gerekli olanları yazıyoruz
+ 
+FROM ubuntu
+RUN apt-get update -y
+RUN apt-get install python3 -y
+RUN apt-get install python3-pip -y
+RUN pip3 install flask
+WORKDIR APP
+COPY . .
+CMD python3 app.py
+------------------------------
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
