@@ -1,2 +1,2 @@
 # Deployment-Cloud
-I wish deployment as easy as getting fat!
+I wish deployment was as easy as getting fat!
